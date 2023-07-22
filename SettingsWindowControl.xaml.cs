@@ -39,6 +39,7 @@ namespace UnityDotsAuthoringGenerator
                 path += Path.DirectorySeparatorChar.ToString();
             }
             SettingsManager.Instance.Set("GenerationPath", path);
+            SettingsManager.Instance.SaveSettings();
             Window.GetWindow(this).Close();
         }
 

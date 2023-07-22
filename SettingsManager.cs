@@ -12,9 +12,9 @@ namespace UnityDotsAuthoringGenerator
     internal class SettingsManager
     {
         private const string SettingsFileName = "DotsGeneratorSettings.txt";
-        private Dictionary<string, string> settings = new Dictionary<string, string>();
+        private Dictionary<string, string> m_settings = new Dictionary<string, string>();
 
-        private static SettingsManager instance;
+        private static SettingsManager m_instance;
         private SettingsManager() { 
             LoadSettings();
         }
@@ -22,19 +22,19 @@ namespace UnityDotsAuthoringGenerator
         public static SettingsManager Instance {
             get
             {
-                if (instance == null) {
-                    instance = new SettingsManager();
+                if (m_instance == null) {
+                    m_instance = new SettingsManager();
                 }
-                return instance;
+                return m_instance;
             }
         }
 
         public void Set(string key, string value) {
-            settings[key]=value;
+            m_settings[key]=value;
         }
 
         public string TryGet(string key) { 
-            if( settings.TryGetValue(key, out var value)) {
+            if( m_settings.TryGetValue(key, out var value)) {
                 return value;
             }
             else {
@@ -42,29 +42,28 @@ namespace UnityDotsAuthoringGenerator
             }            
         }
 
-        public Dictionary<string, string> LoadSettings() {
+        public void LoadSettings() {
             try {
                 using (var isolatedStorage = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Domain | IsolatedStorageScope.Assembly, null, null)) {
                     if (isolatedStorage.FileExists(SettingsFileName)) {
                         using (var stream = new IsolatedStorageFileStream(SettingsFileName, FileMode.Open, isolatedStorage)) {
                             using (var reader = new StreamReader(stream)) {
                                 var settingsData = reader.ReadToEnd();
-                                return DeserializeSettings(settingsData);
+                                m_settings = DeserializeSettings(settingsData);
                             }
                         }
                     }
                 }
             }
             catch (IOException ex) {
-                // Handle IOException if necessary (e.g., log, throw, etc.).
+                throw ex;
             }
-
-            return new Dictionary<string, string>(); // Return an empty dictionary if settings file doesn't exist or there was an error.
+            return;
         }
 
-        public void SaveSettings(Dictionary<string, string> settings) {
+        public void SaveSettings() {
             try {
-                var settingsData = SerializeSettings(settings);
+                var settingsData = SerializeSettings(m_settings);
 
                 using (var isolatedStorage = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Domain | IsolatedStorageScope.Assembly, null, null)) {
                     using (var stream = new IsolatedStorageFileStream(SettingsFileName, FileMode.Create, isolatedStorage)) {
@@ -75,7 +74,7 @@ namespace UnityDotsAuthoringGenerator
                 }
             }
             catch (IOException ex) {
-                // Handle IOException if necessary (e.g., log, throw, etc.).
+                throw ex;
             }
         }
 
