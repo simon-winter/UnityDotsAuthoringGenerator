@@ -48,7 +48,7 @@
       <Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidSettingsWindowCommand" priority="0x0000" type="Button">
         <Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
         <Strings>
-          <ButtonText>Generate DOTS Settings</ButtonText>
+          <ButtonText>Generate DOTS Settings...</ButtonText>
         </Strings>
       </Button>
       <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
@@ -65,6 +65,19 @@
           <ButtonText>Generate DOTS Authoring/Baker</ButtonText>
         </Strings>
       </Button>     
+      <Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidInstantiateWindowCommand" priority="0x0200" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />       
+        <Strings>
+          <ButtonText>Instantiate template...</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidTemplateWindowCommand" priority="0x0100" type="Button">
+        <Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages3" id="bmpPic1" />
+        <Strings>
+          <ButtonText>TemplateWindow</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -75,6 +88,7 @@
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
       <Bitmap guid="guidImages" href="Resources\GenerateAuthoringCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages3" href="Resources\TemplateWindowCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
   </Commands>
 
@@ -87,6 +101,8 @@
       <IDSymbol name="MyMenuGroup" value="0x1020" />
       <IDSymbol name="GenerateAuthoringCommandId" value="0x0100" />
       <IDSymbol value="4129" name="cmdidSettingsWindowCommand" />
+      <IDSymbol value="4130" name="cmdidInstantiateWindowCommand" />
+      <IDSymbol value="4131" name="cmdidTemplateWindowCommand" />
     </GuidSymbol>
 
     <GuidSymbol name="guidImages" value="{7f531c75-ecbf-4fb2-a721-de0ecedc9681}">
@@ -99,6 +115,24 @@
     </GuidSymbol>
   
     <GuidSymbol value="{6052a5a5-4c2a-4a8e-aeb7-939a5d41c388}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{0523b91a-bf52-46e1-bf1a-aea6e25e81b1}" name="guidImages2">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{ec04261f-ed43-4167-94bb-fff6f9ddc903}" name="guidImages3">
       <IDSymbol name="bmpPic1" value="1" />
       <IDSymbol name="bmpPic2" value="2" />
       <IDSymbol name="bmpPicSearch" value="3" />

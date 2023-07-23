@@ -27,6 +27,7 @@ namespace UnityDotsAuthoringGenerator
     [Guid(UnityDotsAuthoringGeneratorPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideToolWindow(typeof(SettingsWindow))]
+    [ProvideToolWindow(typeof(TemplateWindow))]
     public sealed class UnityDotsAuthoringGeneratorPackage : AsyncPackage
     {
         /// <summary>
@@ -49,6 +50,8 @@ namespace UnityDotsAuthoringGenerator
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await GenerateAuthoringCommand.InitializeAsync(this);
             await SettingsWindowCommand.InitializeAsync(this);           
+            await InstantiateWindowCommand.InitializeAsync(this);           
+    await TemplateWindowCommand.InitializeAsync(this);
         }
 
         #endregion

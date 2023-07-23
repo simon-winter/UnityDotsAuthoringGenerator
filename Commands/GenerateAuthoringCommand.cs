@@ -204,7 +204,7 @@ public class {0}Authoring : MonoBehaviour
 
 
             // write file, add to VS project
-            var targetPath = SettingsManager.Instance.TryGet("GenerationPath");
+            var targetPath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
             if (targetPath == "") {
                 targetPath = Path.GetDirectoryName(clickedFilePath) + Path.DirectorySeparatorChar;
             }

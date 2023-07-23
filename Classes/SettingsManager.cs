@@ -11,7 +11,11 @@ namespace UnityDotsAuthoringGenerator
 {
     internal class SettingsManager
     {
-        private const string SettingsFileName = "DotsGeneratorSettings.txt";
+        public static string GENERATOR_PATH = "GenerationPath";
+        public static string SNIPPETS_PATH = "SnippetsPath";
+        public static string FILES_PATH = "FilesPath";
+            
+        private const string SettingsFileName = "DotsGeneratorSettings.txt";        
         private Dictionary<string, string> m_settings = new Dictionary<string, string>();
 
         private static SettingsManager m_instance;

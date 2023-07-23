@@ -46,13 +46,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DteHelper.cs" />
-    <Compile Include="GenerateAuthoringCommand.cs" />
+    <Compile Include="Classes\DteHelper.cs" />
+    <Compile Include="Classes\Templates.cs" />
+    <Compile Include="Commands\GenerateAuthoringCommand.cs" />
+    <Compile Include="Windows\Controls\TemplateWindow.cs" />
+    <Compile Include="Windows\Controls\TemplateWindowCommand.cs" />
+    <Compile Include="Windows\TemplateWindowControl.xaml.cs">
+      <DependentUpon>TemplateWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\InstantiateWindow.cs" />
+    <Compile Include="Windows\Controls\InstantiateWindowCommand.cs" />
+    <Compile Include="Windows\InstantiateWindowControl.xaml.cs">
+      <DependentUpon>InstantiateWindowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsManager.cs" />
-    <Compile Include="SettingsWindow.cs" />
-    <Compile Include="SettingsWindowCommand.cs" />
-    <Compile Include="SettingsWindowControl.xaml.cs">
+    <Compile Include="Classes\SettingsManager.cs" />
+    <Compile Include="Windows\Controls\SettingsWindow.cs" />
+    <Compile Include="Windows\Controls\SettingsWindowCommand.cs" />
+    <Compile Include="Windows\SettingsWindowControl.xaml.cs">
       <DependentUpon>SettingsWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UnityDotsAuthoringGeneratorPackage.cs" />
@@ -87,9 +98,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\GenerateAuthoringCommand.png" />
+    <Content Include="Resources\TemplateWindowCommand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="SettingsWindowControl.xaml">
+    <Page Include="Windows\TemplateWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\InstantiateWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SettingsWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
