@@ -16,9 +16,9 @@ namespace UnityDotsAuthoringGenerator
         /// </summary>
         public SettingsWindowControl() {
             this.InitializeComponent();
-            
+
             this.Loaded += (object sender, RoutedEventArgs e) => {
-               
+
                 text_Current.Text = DteHelper.GetSelectedFilePath();
                 textBox_Path.Text = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
                 text_snippetsPath.Text = SettingsManager.Instance.TryGet(SettingsManager.SNIPPETS_PATH);
@@ -29,15 +29,15 @@ namespace UnityDotsAuthoringGenerator
                 textBox_Path.Select(textBox_Path.Text.Length, 0);
 
                 text_snippetsPath.Focus();
-                text_snippetsPath.Select(textBox_Path.Text.Length, 0); 
+                text_snippetsPath.Select(textBox_Path.Text.Length, 0);
 
                 text_filesPath.Focus();
                 text_filesPath.Select(textBox_Path.Text.Length, 0);
             };
         }
 
-               
-        private void button1_Click(object sender, RoutedEventArgs e) {            
+
+        private void button1_Click(object sender, RoutedEventArgs e) {
             SettingsManager.Instance.Set(SettingsManager.GENERATOR_PATH, getAsDirectory(textBox_Path.Text));
             SettingsManager.Instance.Set(SettingsManager.SNIPPETS_PATH, getAsDirectory(text_snippetsPath.Text));
             SettingsManager.Instance.Set(SettingsManager.FILES_PATH, getAsDirectory(text_filesPath.Text));
@@ -47,11 +47,14 @@ namespace UnityDotsAuthoringGenerator
 
         private void button2_Click(object sender, RoutedEventArgs e) {
             Window.GetWindow(this).Close();
-        }     
+        }
 
         // returns given path/file path as directory, ensuring it ends on path seperator and there is no file extension in it
         private string getAsDirectory(string path) {
-           return Path.GetDirectoryName(path) + Path.DirectorySeparatorChar.ToString();           
+            if (path == "") {
+                return Path.DirectorySeparatorChar.ToString();
+            }
+            return Path.GetDirectoryName(path) + Path.DirectorySeparatorChar.ToString();
         }
     }
 }

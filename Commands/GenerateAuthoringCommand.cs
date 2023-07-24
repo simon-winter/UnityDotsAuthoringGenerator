@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Task = System.Threading.Tasks.Task;
 
 namespace UnityDotsAuthoringGenerator
@@ -121,6 +122,7 @@ public class {0}Authoring : MonoBehaviour
             var clickedFilePath = DteHelper.GetSelectedFilePath();
 
             if (!clickedFilePath.EndsWith(".cs")) {
+                MessageBox.Show(string.Format("xxx Failed reading file: {0}", e), "Failed reading file");
                 VsShellUtilities.ShowMessageBox(
                     this.package,
                     "Only a .cs file can be used for generation.",

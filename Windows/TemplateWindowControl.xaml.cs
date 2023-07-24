@@ -1,6 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using UnityDotsAuthoringGenerator.Classes;
 
 namespace UnityDotsAuthoringGenerator
 {
@@ -14,19 +17,25 @@ namespace UnityDotsAuthoringGenerator
         /// </summary>
         public TemplateWindowControl() {
             this.InitializeComponent();
-            var button = new Button() {
-                Width = 50,
-                Height = 30,
-            };
+            var m_templates = new Templates();
 
             this.Loaded += (object sender, RoutedEventArgs e) => {
                 wrapPanel_Files.Children.Clear();
                 wrapPanel_Snippets.Children.Clear();
-                //m_templates = new Templates();
-                wrapPanel_Files.Children.Add(button);
-                wrapPanel_Files.Children.Add(button);
-                wrapPanel_Files.Children.Add(button);
-                wrapPanel_Files.Children.Add(button);
+                var filesPath = SettingsManager.Instance.TryGet(SettingsManager.FILES_PATH);
+                if (filesPath != "") {
+                    foreach (var file in m_templates.LoadFiles(filesPath)) {                        
+                        wrapPanel_Files.Children.Add(new Button() {
+                            Height = 30,
+                            Width = 50,
+                            Content = file.name,                           
+                            Command = new CreateFile("", file.content)
+                        }) ;
+                    };
+                }
+
+
+
             };
         }
 
@@ -47,4 +56,4 @@ namespace UnityDotsAuthoringGenerator
 
         }
     }
-}
+   }

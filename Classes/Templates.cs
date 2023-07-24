@@ -15,21 +15,22 @@ namespace UnityDotsAuthoringGenerator.Classes
 {
     internal class Templates
     {
-        public Templates() {
-            MessageBox.Show(
-             string.Format(System.Globalization.CultureInfo.CurrentUICulture, "Invoked '{0}'", this.ToString()),
-             "TemplateWindow");
+        public Templates() {          
         }
 
-        public List<(string name, string content)> LoadFiles(AsyncPackage pkg) {
-            var path = SettingsManager.Instance.TryGet(SettingsManager.FILES_PATH);
-            return loadFiles(pkg, path);
+        public List<(string name, string content)> LoadFiles(string path) {  
+            if (path == "") {
+                return null;
+            }
+            return loadFiles(path);
         }
 
-        public List<(string name, string content)> LoadSnippets(AsyncPackage pkg) {
-            var snippets = new List<(string name, string content)>();
-            var path = SettingsManager.Instance.TryGet(SettingsManager.SNIPPETS_PATH);
-            var files = loadFiles(pkg, path);
+        public List<(string name, string content)> LoadSnippets(string path) {
+            if (path == "") {
+                return null;
+            }
+            var snippets = new List<(string name, string content)>();            
+            var files = loadFiles(path);
 
             foreach ((string fileName, string fileContent) in files) {
                 var fileSnippets = Regex.Matches(fileContent, "\\/\\/ *snippet +(\\w*) +start\\n((?:.*?|\\n)*?).*\\/\\/ *snippet +stop");
@@ -43,7 +44,7 @@ namespace UnityDotsAuthoringGenerator.Classes
             return snippets;
         }
 
-        private List<(string name, string content)> loadFiles(AsyncPackage pkg, string path) {
+        private List<(string name, string content)> loadFiles(string path) {
             var fileContents = new List<(string name, string content)>();
             var filePaths = Directory.GetFiles(path, "*.cs", SearchOption.AllDirectories);
             foreach (var filePath in filePaths) {
@@ -51,13 +52,8 @@ namespace UnityDotsAuthoringGenerator.Classes
                 try {
                     content = File.ReadAllText(filePath);
                 }
-                catch (Exception ex) {
-                    VsShellUtilities.ShowMessageBox(pkg,
-                     string.Format("Failed reading file: {0}", ex.Message),
-                     "Failed reading file",
-                     OLEMSGICON.OLEMSGICON_WARNING,
-                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                catch (Exception ex) {                    
+                    MessageBox.Show(string.Format("Failed reading file: {0}", ex.Message), "Failed reading file");                  
                     continue;
                 }
                 var name = Path.GetFileNameWithoutExtension(filePath);
