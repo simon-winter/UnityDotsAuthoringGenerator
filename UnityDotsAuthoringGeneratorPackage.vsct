@@ -64,18 +64,11 @@
         <Strings>
           <ButtonText>Generate DOTS Authoring/Baker</ButtonText>
         </Strings>
-      </Button>     
-      <Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidInstantiateWindowCommand" priority="0x0200" type="Button">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />       
-        <Strings>
-          <ButtonText>Instantiate template...</ButtonText>
-        </Strings>
       </Button>
       <Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidTemplateWindowCommand" priority="0x0100" type="Button">
-        <Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidImages3" id="bmpPic1" />
+        <Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />        
         <Strings>
-          <ButtonText>TemplateWindow</ButtonText>
+          <ButtonText>Create from template...</ButtonText>
         </Strings>
       </Button>
     </Buttons>

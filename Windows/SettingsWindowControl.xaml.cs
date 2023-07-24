@@ -2,59 +2,77 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using UnityDotsAuthoringGenerator.Classes;
 
-
-namespace UnityDotsAuthoringGenerator
-{
+namespace UnityDotsAuthoringGenerator {
+/// <summary>
+/// Interaction logic for SettingsWindowControl.
+/// </summary>
+public partial class SettingsWindowControl : UserControl {
     /// <summary>
-    /// Interaction logic for SettingsWindowControl.
+    /// Initializes a new instance of the <see cref="SettingsWindowControl"/> class.
     /// </summary>
-    public partial class SettingsWindowControl : UserControl
+    public SettingsWindowControl()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SettingsWindowControl"/> class.
-        /// </summary>
-        public SettingsWindowControl() {
-            this.InitializeComponent();
+        this.InitializeComponent();
 
-            this.Loaded += (object sender, RoutedEventArgs e) => {
+        this.Loaded += (object sender, RoutedEventArgs e) =>
+        {
+            text_Current.Text = DteHelper.GetSelectedFilePath();
+            textBox_generate.Text = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
+            textBox_snippetsPath.Text = SettingsManager.Instance.TryGet(SettingsManager.SNIPPETS_PATH);
+            textBox_filesPath.Text = SettingsManager.Instance.TryGet(SettingsManager.FILES_PATH);
 
-                text_Current.Text = DteHelper.GetSelectedFilePath();
-                textBox_Path.Text = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
-                text_snippetsPath.Text = SettingsManager.Instance.TryGet(SettingsManager.SNIPPETS_PATH);
-                text_filesPath.Text = SettingsManager.Instance.TryGet(SettingsManager.FILES_PATH);
+            // scroll to end of line
+            textBox_generate.Focus();
+            textBox_generate.Select(textBox_generate.Text.Length, 0);
 
-                // scroll to end of line 
-                textBox_Path.Focus();
-                textBox_Path.Select(textBox_Path.Text.Length, 0);
+            textBox_snippetsPath.Focus();
+            textBox_snippetsPath.Select(textBox_snippetsPath.Text.Length, 0);
 
-                text_snippetsPath.Focus();
-                text_snippetsPath.Select(textBox_Path.Text.Length, 0);
-
-                text_filesPath.Focus();
-                text_filesPath.Select(textBox_Path.Text.Length, 0);
-            };
-        }
-
-
-        private void button1_Click(object sender, RoutedEventArgs e) {
-            SettingsManager.Instance.Set(SettingsManager.GENERATOR_PATH, getAsDirectory(textBox_Path.Text));
-            SettingsManager.Instance.Set(SettingsManager.SNIPPETS_PATH, getAsDirectory(text_snippetsPath.Text));
-            SettingsManager.Instance.Set(SettingsManager.FILES_PATH, getAsDirectory(text_filesPath.Text));
-            SettingsManager.Instance.SaveSettings();
-            Window.GetWindow(this).Close();
-        }
-
-        private void button2_Click(object sender, RoutedEventArgs e) {
-            Window.GetWindow(this).Close();
-        }
-
-        // returns given path/file path as directory, ensuring it ends on path seperator and there is no file extension in it
-        private string getAsDirectory(string path) {
-            if (path == "") {
-                return Path.DirectorySeparatorChar.ToString();
-            }
-            return Path.GetDirectoryName(path) + Path.DirectorySeparatorChar.ToString();
-        }
+            textBox_filesPath.Focus();
+            textBox_filesPath.Select(textBox_filesPath.Text.Length, 0);
+        };
     }
+
+    private void button1_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsManager.Instance.Set(SettingsManager.GENERATOR_PATH, Utils.GetAsDirectory(textBox_generate.Text));
+        SettingsManager.Instance.Set(SettingsManager.SNIPPETS_PATH, Utils.GetAsDirectory(textBox_snippetsPath.Text));
+        SettingsManager.Instance.Set(SettingsManager.FILES_PATH, Utils.GetAsDirectory(textBox_filesPath.Text));
+        SettingsManager.Instance.Set(SettingsManager.DISABLE_CLIPBOARD_MESSAGE,
+            (bool)checkbox_surpressCopyMsg.IsChecked ? "true" : "false");
+
+        SettingsManager.Instance.SaveSettings();
+        Window.GetWindow(this).Close();
+    }
+
+    private void button2_Click(object sender, RoutedEventArgs e)
+    {
+        Window.GetWindow(this).Close();
+    }
+
+    private void button_filesBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        textBox_filesPath.Text = Utils.AskUserForPath(textBox_filesPath.Text, SettingsManager.FILES_PATH);
+    }
+
+    private void button_snippetsBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        textBox_snippetsPath.Text = Utils.AskUserForPath(textBox_snippetsPath.Text, SettingsManager.SNIPPETS_PATH);
+    }
+
+    private void button_generateBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        textBox_generate.Text = Utils.AskUserForPath(textBox_generate.Text, SettingsManager.GENERATOR_PATH);
+    }
+
+    private void button_snippetsCreate_Click(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private void button_filesCreate_Click(object sender, RoutedEventArgs e)
+    {
+    }
+}
 }

@@ -8,13 +8,14 @@
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
              Name="MyToolWindow" HorizontalAlignment="Left" VerticalAlignment="Top"
-             d:Width="400" d:Height="450" Height="591">
-    <StackPanel Margin="0,0,0,157">
+             d:Width="400" d:Height="450" Height="auto">
+    <StackPanel>
         <GroupBox Header="Authoring generator">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -30,39 +31,56 @@
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Generate to:" VerticalAlignment="Center" HorizontalAlignment="Left" 
                        Foreground="White" Margin="7,7,7,7"/>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="textBox_Path" TextWrapping="NoWrap" Text="generate path" VerticalAlignment="Center"
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="textBox_generate" TextWrapping="NoWrap" Text="generate path" VerticalAlignment="Center"
                          Height="20" Margin="7,7,7,7"/>
-
-                <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,0,7,7"
-                       Content="Leave empty to generate next to selected file" />
+                <Button x:Name="button_generateBrowse" Grid.Row="1" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" Click="button_generateBrowse_Click" />
+                
+                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,0,7,7"
+                       Text="Leave empty to generate next to selected file" TextWrapping="Wrap" />               
             </Grid>
         </GroupBox>
         <GroupBox Header="Templates">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Snippets path:" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                <Label Grid.Row="0" Grid.Column="0" Content="Snippets:" VerticalAlignment="Center" HorizontalAlignment="Left" 
                        Foreground="White" Margin="7,7,7,7"/>
-                <TextBox Grid.Row="0" Grid.Column="1" x:Name="text_snippetsPath" Text="snippet Path" TextWrapping="NoWrap" 
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="textBox_snippetsPath" Text="snippet Path" TextWrapping="NoWrap" 
                          VerticalAlignment="Center" Height="20" Margin="7,7,7,7" />
-                <Label Grid.Row="1" Grid.Column="0" Content="Files path:" VerticalAlignment="Center" HorizontalAlignment="Left" 
+                <Button x:Name="button_snippetsBrowse" Grid.Row="0" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" Click="button_snippetsBrowse_Click"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,7,7,7"
+                       Text="Set path empty and use 'create from template...' command to generate default snippets" TextWrapping="Wrap" />
+
+                <CheckBox Grid.Row="2" Grid.Column="1" x:Name="checkbox_surpressCopyMsg" Content ="Supress 'copied to clipboard' message"
+                         VerticalAlignment="Center" Height="20" Margin="7,7,7,7" IsChecked="False" Foreground="White" />
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Files:" VerticalAlignment="Center" HorizontalAlignment="Left" 
                        Foreground="White" Margin="7,7,7,7"/>
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="text_filesPath" Text="file Path" TextWrapping="NoWrap" 
+                <TextBox Grid.Row="3" Grid.Column="1" x:Name="textBox_filesPath" Text="file Path" TextWrapping="NoWrap" 
                          VerticalAlignment="Center" Height="20" Margin="7,7,7,7" />
+                <Button x:Name="button_filesBrowse" Grid.Row="3" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" VerticalAlignment="Center" Click="button_filesBrowse_Click"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,7,7,7"
+                       Text="Set path empty and use 'create from template...' command to generate default files" TextWrapping="Wrap" />
             </Grid>
         </GroupBox>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button Content="Cancel" Click="button2_Click" Width="50" Height="22" Name="Cancel" HorizontalAlignment="Right"
                     VerticalAlignment="Bottom" Margin="7,7,7,7" IsCancel="True"/>
-            <Button Content="Ok" Click="button1_Click" Width="50" Height="22" Name="Ok" IsDefault="True" HorizontalAlignment="Right"
+            <Button Content="Save" Click="button1_Click" Width="50" Height="22" Name="Ok" IsDefault="True" HorizontalAlignment="Right"
                     Margin="7,7,7,7" VerticalAlignment="Bottom"/>
         </StackPanel>
     </StackPanel>

@@ -21,13 +21,6 @@
                     <Button Content="button" Width="50" Height="30"></Button>
                 </WrapPanel>
             </GroupBox>
-            <ScrollViewer x:Name="scrollViewer_preview" Height="200" FontSize="10" Margin="0,7,0,7" />
-            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <Button  Content="Cancel" Click="button2_Click" Width="50" Height="22" Name="Cancel" HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom" Margin="7,7,7,7" IsCancel="True"/>
-                <Button  Content="Ok" Click="button1_Click" Width="50" Height="22" Name="Ok" IsDefault="True" HorizontalAlignment="Right"
-                     Margin="7,7,0,7" VerticalAlignment="Bottom"/>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -46,19 +46,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\CreateFile.cs" />
+    <Compile Include="Classes\ButtonCommands\Snippet.cs" />
+    <Compile Include="Classes\ButtonCommands\CreateFile.cs" />
     <Compile Include="Classes\DteHelper.cs" />
+    <Compile Include="Classes\ResourceHelper.cs" />
     <Compile Include="Classes\Templates.cs" />
+    <Compile Include="Classes\Utils.cs" />
     <Compile Include="Commands\GenerateAuthoringCommand.cs" />
+    <EmbeddedResource Include="Templates\Files\Class1.cs" />
+    <EmbeddedResource Include="Templates\Snippets\Snippets.cs" />
     <Compile Include="Windows\Controls\TemplateWindow.cs" />
     <Compile Include="Windows\Controls\TemplateWindowCommand.cs" />
     <Compile Include="Windows\TemplateWindowControl.xaml.cs">
       <DependentUpon>TemplateWindowControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\Controls\InstantiateWindow.cs" />
-    <Compile Include="Windows\Controls\InstantiateWindowCommand.cs" />
-    <Compile Include="Windows\InstantiateWindowControl.xaml.cs">
-      <DependentUpon>InstantiateWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\SettingsManager.cs" />
@@ -103,10 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Windows\TemplateWindowControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\InstantiateWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
