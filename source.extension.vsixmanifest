@@ -9,15 +9,13 @@
 - file gets generated nexto source file (configurable in settings)
 
 # Template posting
-( - go to settings and empty snippets and files path and save)
 - right click any file or folder
 - select  'Create from template...' command
-- click ok, choose a path to an empty folder
-(- repeat for snippets: ok, choose other empty folder) 
-- example tempalte files are generated to select folders
-- using 'Create from template...' command with non empty path allows posting of templates
+- accept default installation
+- use 'Create from template...' command to post templates
+- empty path in settings to regenerate examples 
 
-snippets arestored to clipboard.
+snippets are stored to clipboard.
 Files are generated with provided file name and posted nexto selected location.
 All template folders can be freely added/expanded for custom content.</Description>
     </Metadata>

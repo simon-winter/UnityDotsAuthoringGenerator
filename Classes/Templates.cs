@@ -10,12 +10,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.PlatformUI;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace UnityDotsAuthoringGenerator.Classes
 {
     internal class Templates
     {
         public Templates() {
+        }
+        public void GenerateDefaultInstallation() {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var basePath = Path.Combine(Path.GetDirectoryName(DteHelper.GetProject().FileName), "CodeTemplates");
+
+            var filePath = Path.Combine(basePath, "Files");
+            filePath += Path.DirectorySeparatorChar;
+            GenerateExampleFileTemplates(filePath);
+            SettingsManager.Instance.Set(SettingsManager.FILES_PATH, filePath);
+
+            var snippetsPath = Path.Combine(basePath, "Snippets");
+            snippetsPath += Path.DirectorySeparatorChar;
+            GenerateExampleSnippets(snippetsPath);
+            SettingsManager.Instance.Set(SettingsManager.SNIPPETS_PATH, snippetsPath);          
+            SettingsManager.Instance.SaveSettings();
         }
 
         public void GenerateExampleFileTemplates(string path = "") {
@@ -42,6 +58,9 @@ namespace UnityDotsAuthoringGenerator.Classes
             ThreadHelper.ThrowIfNotOnUIThread();
             var fileTemplates = ResourceHelper.GetResourcesFromFolder(resourceFolder);
             foreach ((string fileName, string content) in fileTemplates) {
+                if(!Directory.Exists(generationPath)) {
+                    Directory.CreateDirectory(generationPath);
+                }
                 var fullFilePath = generationPath + fileName;
                 if (!File.Exists(fullFilePath)) {
                     File.WriteAllText(fullFilePath, content);
