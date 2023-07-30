@@ -53,8 +53,11 @@
     <Compile Include="Classes\Templates.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Commands\GenerateAuthoringCommand.cs" />
-    <EmbeddedResource Include="Templates\Files\Class1.cs" />
+    <EmbeddedResource Include="Templates\Files\ISystem.cs" />
     <EmbeddedResource Include="Templates\Snippets\Snippets.cs" />
+    <EmbeddedResource Include="Templates\Files\TriggerSystem.cs" />
+    <EmbeddedResource Include="Templates\Files\ComponentData.cs" />
+    <EmbeddedResource Include="Templates\Files\BuffElement.cs" />
     <Compile Include="Windows\Controls\TemplateWindow.cs" />
     <Compile Include="Windows\Controls\TemplateWindowCommand.cs" />
     <Compile Include="Windows\TemplateWindowControl.xaml.cs">

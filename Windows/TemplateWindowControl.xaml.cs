@@ -84,5 +84,9 @@ public partial class TemplateWindowControl : UserControl {
     {
         Window.GetWindow(this).Close();
     }
-}
+        private void checkbox_surpressCopyMsg_Changed(object sender, RoutedEventArgs e) {
+            SettingsManager.Instance.Set(SettingsManager.DISABLE_CLIPBOARD_MESSAGE,
+            (bool)checkbox_surpressCopyMsg.IsChecked ? "true" : "false");
+        }
+    }
 }

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="UnityDotsAuthoringGenerator.6d79bb3d-9577-4ad0-8174-9d0b5bd8e194" Version="1.1" Language="en-US" Publisher="simon_winter" />
+        <Identity Id="UnityDotsAuthoringGenerator.6d79bb3d-9577-4ad0-8174-9d0b5bd8e194" Version="1.2" Language="en-US" Publisher="simon_winter" />
         <DisplayName>Unity Dots Authoring Generator</DisplayName>
-        <Description xml:space="preserve">Generates Authoring and baker file via right click context menue from ComponentData</Description>
+        <Description xml:space="preserve"># Automatic Authoring+Baker generation from source file
+- right click a file containing a single ComponentData or BufferElementData
+- select 'Generate DOTS Authoring/Baker' command
+- file gets generated nexto source file (configurable in settings)
+
+# Template posting
+( - go to settings and empty snippets and files path and save)
+- right click any file or folder
+- select  'Create from template...' command
+- click ok, choose a path to an empty folder
+(- repeat for snippets: ok, choose other empty folder) 
+- example tempalte files are generated to select folders
+- using 'Create from template...' command with non empty path allows posting of templates
+
+snippets arestored to clipboard.
+Files are generated with provided file name and posted nexto selected location.
+All template folders can be freely added/expanded for custom content.</Description>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">

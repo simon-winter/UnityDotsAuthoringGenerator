@@ -8,7 +8,7 @@
              Foreground="{DynamicResource {x:Static vsshell:VsBrushes.WindowTextKey}}"
              mc:Ignorable="d"
              Name="MyToolWindow" HorizontalAlignment="Left" VerticalAlignment="Top"
-             d:Width="400" d:Height="450" Height="auto">
+             d:Width="400" d:Height="450" Height="334">
     <StackPanel>
         <GroupBox Header="Authoring generator">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -62,8 +62,6 @@
                          VerticalAlignment="Center" Height="20" Margin="7,7,7,7" />
                 <Button x:Name="button_snippetsBrowse" Grid.Row="0" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" 
                         VerticalAlignment="Center" Click="button_snippetsBrowse_Click"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,7,7,7"
-                       Text="Set path empty and use 'create from template...' command to generate default snippets" TextWrapping="Wrap" />
 
                 <CheckBox Grid.Row="2" Grid.Column="1" x:Name="checkbox_surpressCopyMsg" Content ="Supress 'copied to clipboard' message"
                          VerticalAlignment="Center" Height="20" Margin="7,7,7,7" IsChecked="False" Foreground="White" />
@@ -73,8 +71,6 @@
                 <TextBox Grid.Row="3" Grid.Column="1" x:Name="textBox_filesPath" Text="file Path" TextWrapping="NoWrap" 
                          VerticalAlignment="Center" Height="20" Margin="7,7,7,7" />
                 <Button x:Name="button_filesBrowse" Grid.Row="3" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" VerticalAlignment="Center" Click="button_filesBrowse_Click"/>
-                <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,7,7,7"
-                       Text="Set path empty and use 'create from template...' command to generate default files" TextWrapping="Wrap" />
             </Grid>
         </GroupBox>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">

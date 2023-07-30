@@ -54,17 +54,17 @@ public partial class SettingsWindowControl : UserControl {
 
     private void button_filesBrowse_Click(object sender, RoutedEventArgs e)
     {
-        textBox_filesPath.Text = Utils.AskUserForPath(textBox_filesPath.Text, SettingsManager.FILES_PATH);
+        textBox_filesPath.Text = Utils.AskUserForPath("",textBox_filesPath.Text, SettingsManager.FILES_PATH);
     }
 
     private void button_snippetsBrowse_Click(object sender, RoutedEventArgs e)
     {
-        textBox_snippetsPath.Text = Utils.AskUserForPath(textBox_snippetsPath.Text, SettingsManager.SNIPPETS_PATH);
+        textBox_snippetsPath.Text = Utils.AskUserForPath("",textBox_snippetsPath.Text, SettingsManager.SNIPPETS_PATH);
     }
 
     private void button_generateBrowse_Click(object sender, RoutedEventArgs e)
     {
-        textBox_generate.Text = Utils.AskUserForPath(textBox_generate.Text, SettingsManager.GENERATOR_PATH);
+        textBox_generate.Text = Utils.AskUserForPath("", textBox_generate.Text, SettingsManager.GENERATOR_PATH);
     }
 
     private void button_snippetsCreate_Click(object sender, RoutedEventArgs e)

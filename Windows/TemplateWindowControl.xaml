@@ -10,12 +10,14 @@
              d:DesignHeight="500" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid Margin="7,7,7,7">
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical">           
             <GroupBox Header="Snippets">
                 <WrapPanel x:Name="wrapPanel_Snippets">
                     <Button Content="button" Width="50" Height="30" Margin="2,2,2,2"></Button>
                 </WrapPanel>
             </GroupBox>
+            <CheckBox Grid.Row="2" Grid.Column="1" x:Name="checkbox_surpressCopyMsg" Content ="Supress 'copied to clipboard' message"
+                         VerticalAlignment="Center" Height="20" Margin="7,7,7,7" IsChecked="False" Foreground="White" Checked="checkbox_surpressCopyMsg_Changed" Unchecked="checkbox_surpressCopyMsg_Changed" />
             <GroupBox Header="Files">
                 <WrapPanel x:Name="wrapPanel_Files">
                     <Button Content="button" Width="50" Height="30"></Button>
