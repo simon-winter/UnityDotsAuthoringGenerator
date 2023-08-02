@@ -1,5 +1,6 @@
 ﻿using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio.Debugger.Interop;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -21,6 +22,8 @@ namespace UnityDotsAuthoringGenerator {
 /// Command handler
 /// </summary>
 internal sealed class GenerateAuthoringCommand {
+
+    Checkbox chkBx_relativeGen;
     /// <summary>
     /// Command ID.
     /// </summary>
@@ -49,7 +52,9 @@ internal sealed class GenerateAuthoringCommand {
 
         var menuCommandID = new CommandID(CommandSet, CommandId);
         var menuItem = new MenuCommand(this.Execute, menuCommandID);
+
         commandService.AddCommand(menuItem);
+        chkBx_relativeGen = new Checkbox(SettingsManager.GENERATE_RELATIVE, true);
     }
 
     /// <summary>
@@ -192,12 +197,15 @@ public class {0}Authoring : MonoBehaviour
         }
 
         // write file, add to VS project
-        var targetPath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
-        if (targetPath == "") {
-            targetPath = Path.GetDirectoryName(clickedFilePath) + Path.DirectorySeparatorChar;
+        string generatePath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
+        if (generatePath == "" | chkBx_relativeGen.Checked) {
+            generatePath = Utils.GetAsDirectory(clickedFilePath);
+        } else {
+            generatePath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
         }
+
         var targetFile = Path.GetFileName(clickedFilePath.Replace(".cs", "_Authoring.cs"));
-        var destination = targetPath + targetFile;
+        var destination = generatePath + targetFile;
         try {
             File.WriteAllText(destination, fileContent.ToString());
             DteHelper.GetProject().ProjectItems.AddFromFile(destination);

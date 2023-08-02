@@ -36,8 +36,8 @@
                 <Button x:Name="button_generateBrowse" Grid.Row="1" Grid.Column="2" Content="Browse..." HorizontalAlignment="Center" 
                         VerticalAlignment="Center" Click="button_generateBrowse_Click" />
                 
-                <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,0,7,7"
-                       Text="Leave empty to generate next to selected file" TextWrapping="Wrap" />               
+                <CheckBox x:Name="checkbox_generateRelative" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" Margin="7,0,7,7"
+                       Content="Generate next to selected file" IsChecked="True" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>               
             </Grid>
         </GroupBox>
         <GroupBox Header="Templates">

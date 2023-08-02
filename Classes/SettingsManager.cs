@@ -12,6 +12,7 @@ using UnityDotsAuthoringGenerator.Classes;
 namespace UnityDotsAuthoringGenerator {
 internal class SettingsManager {
     public static string GENERATOR_PATH = "GenerationPath";
+    public static string GENERATE_RELATIVE = "GenerateRelative";
     public static string SNIPPETS_PATH = "SnippetsPath";
     public static string FILES_PATH = "FilesPath";
     public static string DISABLE_CLIPBOARD_MESSAGE = "ShowClipboardMessage";

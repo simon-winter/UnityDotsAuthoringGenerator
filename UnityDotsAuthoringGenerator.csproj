@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Classes\ButtonCommands\Snippet.cs" />
     <Compile Include="Classes\ButtonCommands\CreateFile.cs" />
+    <Compile Include="Classes\Checkbox.cs" />
     <Compile Include="Classes\DteHelper.cs" />
     <Compile Include="Classes\ResourceHelper.cs" />
     <Compile Include="Classes\Templates.cs" />

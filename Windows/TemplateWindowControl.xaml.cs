@@ -52,7 +52,7 @@ namespace UnityDotsAuthoringGenerator
                             Width = 120,
                             Margin = new Thickness(2, 2, 2, 2),
                             Content = Path.GetFileNameWithoutExtension(file.name),
-                            Command = new CreateFile(DteHelper.GetSelectedFileDirectory(), Path.GetExtension(file.name), file.content)
+                            Command = new CreateFile(DteHelper.GetSelectedSolutionFileDirectory(), Path.GetExtension(file.name), file.content)
                         });
                     };
                 }
