@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell.Settings;
+using Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
@@ -14,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using UnityDotsAuthoringGenerator.Classes;
 using Task = System.Threading.Tasks.Task;
 

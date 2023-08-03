@@ -22,8 +22,10 @@ internal class DteHelper {
         ThreadHelper.ThrowIfNotOnUIThread();
         if (IsSolutionExplorerFocused()) {
             return GetSelectedSolutionFileDirectory();
-        } else {
+        } else if (GetActiveDocument() != null) {
             return GetActiveDocument().Path;
+        } else {
+            return "";
         }
     }
 

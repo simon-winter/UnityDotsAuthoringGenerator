@@ -50,6 +50,7 @@
     <Compile Include="Classes\ButtonCommands\CreateFile.cs" />
     <Compile Include="Classes\Checkbox.cs" />
     <Compile Include="Classes\DteHelper.cs" />
+    <Compile Include="Classes\FolderPicker.cs" />
     <Compile Include="Classes\ResourceHelper.cs" />
     <Compile Include="Classes\Templates.cs" />
     <Compile Include="Classes\Utils.cs" />

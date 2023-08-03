@@ -21,22 +21,22 @@ internal class Utils {
         if (openAt == "" || (!Directory.Exists(openAt) && !File.Exists(openAt))) {
             openAt = Path.GetDirectoryName(DteHelper.GetProject().FileName);
         }
-        OpenFileDialog dialog = new OpenFileDialog();
-        // FolderBrowserDialog dialog = new FolderBrowserDialog();
+
+        var dialog = new FolderPicker();
+        dialog.InputPath = openAt;
         dialog.Title = description;
 
-        dialog.InitialDirectory = openAt;
         var result = dialog.ShowDialog();
-        if (result != DialogResult.OK) {
+        if (result != true) {
             return "";
         }
 
         if (safeTo != "") {
-            SettingsManager.Instance.Set(safeTo, dialog.InitialDirectory + Path.DirectorySeparatorChar);
+            SettingsManager.Instance.Set(safeTo, dialog.ResultName + Path.DirectorySeparatorChar);
             SettingsManager.Instance.SaveSettings();
         }
 
-        return dialog.InitialDirectory + Path.DirectorySeparatorChar;
+        return dialog.ResultName + Path.DirectorySeparatorChar;
     }
 
     public static void ShowErrorBox(string error)
