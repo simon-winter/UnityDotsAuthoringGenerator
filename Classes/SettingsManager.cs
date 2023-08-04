@@ -16,6 +16,7 @@ internal class SettingsManager {
     public static string SNIPPETS_PATH = "SnippetsPath";
     public static string FILES_PATH = "FilesPath";
     public static string DISABLE_CLIPBOARD_MESSAGE = "ShowClipboardMessage";
+    public static string PLAY_GENERATED_SOUND = "PlayGeneratedSound";
 
     private const string SettingsFileName = "DotsGeneratorSettings.txt";
     private Dictionary<string, string> m_settings = new Dictionary<string, string>();

@@ -11,6 +11,7 @@ namespace UnityDotsAuthoringGenerator {
 public partial class SettingsWindowControl : UserControl {
     Checkbox chkBx_disableCopyHint;
     Checkbox chkBx_relativeGen;
+    Checkbox chkBx_playGenNotification;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsWindowControl"/> class.
@@ -19,6 +20,7 @@ public partial class SettingsWindowControl : UserControl {
     {
         chkBx_disableCopyHint = new Checkbox(SettingsManager.DISABLE_CLIPBOARD_MESSAGE, false);
         chkBx_relativeGen = new Checkbox(SettingsManager.GENERATE_RELATIVE, true);
+        chkBx_playGenNotification = new Checkbox(SettingsManager.PLAY_GENERATED_SOUND, true);
         this.InitializeComponent();
 
         this.Loaded += (object sender, RoutedEventArgs e) =>
@@ -29,6 +31,7 @@ public partial class SettingsWindowControl : UserControl {
             textBox_filesPath.Text = SettingsManager.Instance.TryGet(SettingsManager.FILES_PATH) + " ";
             checkbox_surpressCopyMsg.IsChecked = chkBx_disableCopyHint.Checked;
             checkbox_generateRelative.IsChecked = chkBx_relativeGen.Checked;
+            checkbox_playGenSound.IsChecked = chkBx_playGenNotification.Checked;
 
             textBox_generate.IsEnabled = !chkBx_relativeGen.Checked;
 
@@ -52,6 +55,7 @@ public partial class SettingsWindowControl : UserControl {
 
         chkBx_disableCopyHint.Checked = (bool)checkbox_surpressCopyMsg.IsChecked;
         chkBx_relativeGen.Checked = (bool)checkbox_generateRelative.IsChecked;
+        chkBx_playGenNotification.Checked = (bool)checkbox_playGenSound.IsChecked;
 
         SettingsManager.Instance.SaveSettings();
         Window.GetWindow(this).Close();
@@ -87,11 +91,11 @@ public partial class SettingsWindowControl : UserControl {
 
     private void CheckBox_Checked(object sender, RoutedEventArgs e)
     {
-        var isChecked = (bool)checkbox_generateRelative.IsChecked;
-        textBox_generate.IsEnabled = !isChecked;
-        chkBx_relativeGen.Checked = isChecked;
+        textBox_generate.IsEnabled = !(bool)checkbox_generateRelative.IsChecked;
+    }
 
-        SettingsManager.Instance.SaveSettings();
+    private void checkbox_playGenSound_Checked(object sender, RoutedEventArgs e)
+    {
     }
 }
 }

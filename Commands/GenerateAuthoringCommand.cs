@@ -26,6 +26,7 @@ namespace UnityDotsAuthoringGenerator {
 internal sealed class GenerateAuthoringCommand {
 
     Checkbox chkBx_relativeGen;
+    Checkbox chkBx_playGenNotification;
     /// <summary>
     /// Command ID.
     /// </summary>
@@ -57,6 +58,7 @@ internal sealed class GenerateAuthoringCommand {
 
         commandService.AddCommand(menuItem);
         chkBx_relativeGen = new Checkbox(SettingsManager.GENERATE_RELATIVE, true);
+        chkBx_playGenNotification = new Checkbox(SettingsManager.PLAY_GENERATED_SOUND, true);
     }
 
     /// <summary>
@@ -211,6 +213,9 @@ public class {0}Authoring : MonoBehaviour
         try {
             File.WriteAllText(destination, fileContent.ToString());
             DteHelper.GetProject().ProjectItems.AddFromFile(destination);
+            if (chkBx_playGenNotification.Checked) {
+                Utils.PlaySound();
+            }
         } catch (Exception ex) {
             Utils.ShowErrorBox(ex.Message);
         }

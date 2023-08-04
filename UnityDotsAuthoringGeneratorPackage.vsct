@@ -90,7 +90,9 @@
 			<Bitmap guid="guidImages3" href="Resources\TemplateWindowCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
 		</Bitmaps>
 	</Commands>
-
+	<KeyBindings>
+		<KeyBinding key1="g" mod1="Alt" guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="GenerateAuthoringCommandId" editor="guidVSStd97" />
+	</KeyBindings>
 	<Symbols>
 		<!-- This is the package guid. -->
 		<GuidSymbol name="guidUnityDotsAuthoringGeneratorPackage" value="{293a3e04-97c8-4b89-9983-a02052189e05}" />

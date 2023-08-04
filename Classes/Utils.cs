@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualStudio.Shell;
+using System.Media;
 
 namespace UnityDotsAuthoringGenerator.Classes {
 internal class Utils {
@@ -13,6 +14,21 @@ internal class Utils {
             return "";
         }
         return Path.GetDirectoryName(path) + Path.DirectorySeparatorChar.ToString();
+    }
+
+    public static void PlaySound()
+    {
+        string soundFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), @"Media\ding.wav");
+        if (File.Exists(soundFilePath)) {
+            try {
+                using (SoundPlayer player = new SoundPlayer(soundFilePath))
+                {
+                    player.Play();
+                }
+            } catch (Exception ex) {
+                Utils.ShowErrorBox(string.Format("Can't play sound: ", ex.Message));
+            }
+        }
     }
 
     public static string AskUserForPath(string description, string openAt, string safeTo)
@@ -41,7 +57,7 @@ internal class Utils {
 
     public static void ShowErrorBox(string error)
     {
-        MessageBox.Show(string.Format("An error occured: {0}", error), "Error",
+        MessageBox.Show(string.Format(error), "Error",
             MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 }
