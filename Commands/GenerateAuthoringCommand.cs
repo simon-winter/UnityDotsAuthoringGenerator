@@ -194,7 +194,7 @@ public class {0}Authoring : MonoBehaviour
             var addCompType = componentType.Contains("Shared") ? "AddSharedComponent" : "AddComponent";
             fileContent.Append(string.Format(bakerBlueprint, name, addCompType, bakerValues.ToString()));
         } else {
-            fileContent.Append(string.Format(authoringBlueprint, name));
+            fileContent.Append(string.Format(authoringBlueprint, name, ""));
             fileContent.Append(string.Format(bakerBufferBlueprint, name));
         }
 

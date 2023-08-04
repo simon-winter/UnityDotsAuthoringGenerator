@@ -54,7 +54,7 @@
 			<Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidSettingsWindowCommand" priority="0x0000" type="Button">
 				<Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
 				<Strings>
-					<ButtonText>Generate DOTS Settings...</ButtonText>
+					<ButtonText>DOTS Settings...</ButtonText>
 				</Strings>
 			</Button>
 			<!--To define a menu group you have to specify its ID, the parent menu and its display priority.
@@ -68,13 +68,13 @@
 				<Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
 				<Icon guid="guidImages" id="bmpPic1" />
 				<Strings>
-					<ButtonText>Generate DOTS Authoring/Baker</ButtonText>
+					<ButtonText>DOTS Generate Authoring</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="cmdidTemplateWindowCommand" priority="0x0200" type="Button">
 				<Parent guid="guidUnityDotsAuthoringGeneratorPackageCmdSet" id="MyMenuGroup" />
 				<Strings>
-					<ButtonText>Create from template...</ButtonText>
+					<ButtonText>DOTS Create From Template...</ButtonText>
 				</Strings>
 			</Button>
 		</Buttons>
