@@ -1,9 +1,11 @@
 ﻿using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio.Debugger.Interop;
 using Microsoft.VisualStudio.Settings;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell.Settings;
+using Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
@@ -13,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using UnityDotsAuthoringGenerator.Classes;
 using Task = System.Threading.Tasks.Task;
 
@@ -21,6 +24,9 @@ namespace UnityDotsAuthoringGenerator {
 /// Command handler
 /// </summary>
 internal sealed class GenerateAuthoringCommand {
+
+    Checkbox chkBx_relativeGen;
+    Checkbox chkBx_playGenNotification;
     /// <summary>
     /// Command ID.
     /// </summary>
@@ -49,7 +55,10 @@ internal sealed class GenerateAuthoringCommand {
 
         var menuCommandID = new CommandID(CommandSet, CommandId);
         var menuItem = new MenuCommand(this.Execute, menuCommandID);
+
         commandService.AddCommand(menuItem);
+        chkBx_relativeGen = new Checkbox(SettingsManager.GENERATE_RELATIVE, true);
+        chkBx_playGenNotification = new Checkbox(SettingsManager.PLAY_GENERATED_SOUND, true);
     }
 
     /// <summary>
@@ -187,20 +196,26 @@ public class {0}Authoring : MonoBehaviour
             var addCompType = componentType.Contains("Shared") ? "AddSharedComponent" : "AddComponent";
             fileContent.Append(string.Format(bakerBlueprint, name, addCompType, bakerValues.ToString()));
         } else {
-            fileContent.Append(string.Format(authoringBlueprint, name));
+            fileContent.Append(string.Format(authoringBlueprint, name, ""));
             fileContent.Append(string.Format(bakerBufferBlueprint, name));
         }
 
         // write file, add to VS project
-        var targetPath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
-        if (targetPath == "") {
-            targetPath = Path.GetDirectoryName(clickedFilePath) + Path.DirectorySeparatorChar;
+        string generatePath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
+        if (generatePath == "" | chkBx_relativeGen.Checked) {
+            generatePath = Utils.GetAsDirectory(clickedFilePath);
+        } else {
+            generatePath = SettingsManager.Instance.TryGet(SettingsManager.GENERATOR_PATH);
         }
+
         var targetFile = Path.GetFileName(clickedFilePath.Replace(".cs", "_Authoring.cs"));
-        var destination = targetPath + targetFile;
+        var destination = generatePath + targetFile;
         try {
             File.WriteAllText(destination, fileContent.ToString());
             DteHelper.GetProject().ProjectItems.AddFromFile(destination);
+            if (chkBx_playGenNotification.Checked) {
+                Utils.PlaySound();
+            }
         } catch (Exception ex) {
             Utils.ShowErrorBox(ex.Message);
         }
