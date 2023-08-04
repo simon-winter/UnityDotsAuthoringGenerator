@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="UnityDotsAuthoringGenerator.6d79bb3d-9577-4ad0-8174-9d0b5bd8e194" Version="1.2" Language="en-US" Publisher="simon_winter" />
+        <Identity Id="UnityDotsAuthoringGenerator.6d79bb3d-9577-4ad0-8174-9d0b5bd8e194" Version="1.3" Language="en-US" Publisher="simon_winter" />
         <DisplayName>Unity Dots Authoring Generator</DisplayName>
-        <Description xml:space="preserve"># Automatic Authoring+Baker generation from source file
-- right click a file containing a single ComponentData or BufferElementData
-- select 'Generate DOTS Authoring/Baker' command
-- file gets generated nexto source file (configurable in settings)
-
-# Template posting
-- right click any file or folder
-- select  'Create from template...' command
-- accept default installation
-- use 'Create from template...' command to post templates
-- empty path in settings to regenerate examples 
-
-snippets are stored to clipboard.
-Files are generated with provided file name and posted nexto selected location.
-All template folders can be freely added/expanded for custom content.</Description>
+        <Description xml:space="preserve">- Automatic Authoring+Baker generation from source file
+- Templated file generation (ISystem, IComponentData, ...)
+- Snippet posting
+All configurable and expandable by editing/adding files</Description>
+        <MoreInfo>https://github.com/simon-winter/UnityDotsAuthoringGenerator/tree/main</MoreInfo>
+        <GettingStartedGuide>https://github.com/simon-winter/UnityDotsAuthoringGenerator/tree/main</GettingStartedGuide>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
