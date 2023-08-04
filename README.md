@@ -45,6 +45,14 @@ When there is no path set, eihter for files or snippets, the extension will offe
 This folder is then set in the settigns aswell as source for your files or snippets.
 Having neither a snippets path nor a file path will trigger a installation dialog, which creates all examples in a project root based directory structure.
 
+# Keyboard shortcuts
+It is possible to use Visual Stduios built in shortcut manager to change/set shortcuts for the commands provided by this extension.
+The defaults are:
+- Generate Authoring: `ALT + G`
+  
+The shortcut manager is under `Tools > Options` search for `keyboard`.
+All commands start with `DOTS` and can be found over that keyword easily:
 
+![image](https://github.com/simon-winter/UnityDotsAuthoringGenerator/assets/34577718/bb3bcd1f-10ad-42e4-b094-7a3598439f02)
 
 All template folders can be freely added/expanded for custom content.
